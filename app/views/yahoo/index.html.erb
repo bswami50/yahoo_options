@@ -71,9 +71,9 @@
 
 <form class="search-form" method="post" action="fetchOptionData">
   <%= label("ticker", "Ticker") %>
-  <input type="text" id="ticker" name="ticker" size="6" value=<%= $ticker %> /> 
+  <input type="text" id="ticker" name="ticker" size="6" value=<%= $ticker %> > 
   <%= label("daysToExpiry", "Days to Expiry") %>
-  <input type="text" id="expiry" name="daysToExpiry" value=<%= $days_to_expiry %> size="6"  />
+  <input type="text" id="expiry" name="daysToExpiry" value=<%= $days_to_expiry %> size="6"  >
   <%= radio_button("post", "category", "put", :checked => true) %>
   <%= label("put", "Put") %>
   <%= radio_button("post", "category", "call") %>
