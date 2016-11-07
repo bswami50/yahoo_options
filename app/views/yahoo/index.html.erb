@@ -1,0 +1,133 @@
+<html>
+<body data-no-turbolink="true">
+		
+<style media="screen" type="text/css">
+    body {
+        background-color: lavender;
+    }
+    h4 {
+        color: black;
+        text-align: left;
+    	margin-bottom: 2px;
+    	margin-top: 2px;
+    	font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    h5 {
+        color: black;
+        text-align: left;
+    	margin-bottom: 0px;
+    	margin-top: 0px;
+    	font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+    h6 {
+        color: black;
+        text-align: left;
+    	margin-bottom: 0px;
+    	margin-top: 0px;
+    	font-family: "Trebuchet MS", Helvetica, sans-serif;
+    }
+	label {
+	    cursor: default;
+		font-size: 12px;
+		font-family: "Trebuchet MS", Helvetica, sans-serif;
+	}
+    th {
+    	color: black;
+		font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-size: 15px;
+    	margin-bottom: 0px;
+    	margin-top: 0px;
+    	font-weight: 500;
+    	font-style: normal;
+		margin-left: 0em ;
+		border: 1px solid black;
+		padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+		vertical-align: top;
+    }
+    td  {
+    	color: black;
+		font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+		font-size: 15px;
+    	margin-bottom: 0px;
+    	margin-top: 0px;
+    	font-weight: 300;
+    	font-style: normal;
+		margin-left: 0em ;
+		border: 1px solid black;
+		padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+		vertical-align: top;
+    }
+	table {
+	    border-collapse: collapse;
+		border-spacing: 0px;
+	}	
+</style>
+
+<form class="search-form" method="post" action="fetchOptionData">
+  <%= label("ticker", "Ticker") %>
+  <input type="text" id="ticker" name="ticker" size="6" /> 
+  <%= label("daysToExpiry", "Days to Expiry") %>
+  <input type="text" id="expiry" name="daysToExpiry" size="6"  />
+  <%= radio_button("post", "category", "put", :checked => true) %>
+  <%= label("put", "Put") %>
+  <%= radio_button("post", "category", "call") %>
+  <%= label("call", "Call") %>
+  <%= submit_tag "Fetch Option Data" %>
+</form>
+
+<br> 
+<h5> <%= "Ticker : #{$ticker}" %> </h4>
+<h5> <%= "Price  : #{$stock_price}" %> </h4>
+<h5> <%= "Expiry : #{$expiry}" %> </h4>
+<h5> <%= "Days to Expiry: #{$days_to_expiry}" %> </h4>
+
+<br> 
+<table>
+<% if (!$option_data_array.blank?) %>	
+<h5> <%= $option_data_array.size %> <%= $puts_or_calls %> records found </h4>	
+<th> Record # </th>
+<th> Contract </th>
+<th> Strike </th>
+<th> Away (%) </th>
+<th> Price </th>
+<th> Volume </th>
+<th> IV (%)</th>
+<th> Ann. Return (%) </th>
+<% end %>
+<%  $option_data_array.keys.each do |key| %>
+<tr> 
+<td align = "center">	<%= "#{key}" %> </td> 
+<td align = "right">	<%= "#{$option_data_array[key][0][0]}" %> </td>
+<td align = "right" style = "color:green; font-weight: 500;">	<%= "#{$option_data_array[key][0][1]}" %> </td> 
+<td align = "center">	<%= "#{$option_data_array[key][0][2]}" %> </td>
+<td align = "right">	<%= "#{$option_data_array[key][0][3]}" %> </td>
+<td align = "right">	<%= "#{$option_data_array[key][0][4]}" %> </td> 
+<td align = "right">	<%= "#{$option_data_array[key][0][5]}" %> </td>
+<td align = "right" style = "color:blue; font-weight: 500;">	<%= "#{$option_data_array[key][0][6]}" %> </td>
+</tr>	
+<% end %>  
+</table> 
+
+<br>
+
+<% if (!$ticker.blank?) %>	
+<img src="http://www.finviz.com/chart.ashx?t=<%=$ticker%>&amp;ty=c&amp;ta=0&amp;p=m&amp;s=l" alt="Chart" style="height:365px;border:2;" align=center>		
+<% end %>	
+
+<br>
+<br>
+<form class="clear" method="post" action="clearData">
+  <%= submit_tag "Clear Data" %>
+<br>
+
+<br>
+	
+</body>
+</html>
+ 
