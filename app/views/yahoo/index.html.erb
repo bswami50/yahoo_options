@@ -74,11 +74,23 @@
   <input type="text" id="ticker" name="ticker" size="6" value=<%= $ticker %> > 
   <%= label("daysToExpiry", "Days to Expiry") %>
   <input type="text" id="expiry" name="daysToExpiry" value=<%= $days_to_expiry %> size="6"  >
+
+<% if $puts_or_calls == "put" %> 
   <%= radio_button("post", "category", "put", :checked => true) %>
-  <%= label("put", "Put") %>
+<% elsif %>
+   <%= radio_button("post", "category", "put") %>
+<% end>	
+
+<%= label("put", "Put") %>
+
+<% if $puts_or_calls == "call" %>	
+  <%= radio_button("post", "category", "call", :checked => true) %>
+<% elsif %>	
   <%= radio_button("post", "category", "call") %>
-  <%= label("call", "Call") %>
-  <%= submit_tag "Fetch Option Data" %>
+<% end %>	
+ 
+<%= label("call", "Call") %>
+<%= submit_tag "Fetch Option Data" %>
 </form>
 
 <br> 
