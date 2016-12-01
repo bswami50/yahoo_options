@@ -1,4 +1,6 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		
 <style media="screen" type="text/css">
     body {
@@ -65,7 +67,11 @@
   table {
 	border-collapse: collapse;
 	border-spacing: 0px;
-	}	
+	}
+.ui-autocomplete {  
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 14px;
+}
 </style>
 
 <form class="search-form" method="post" action="fetchOptionData">
@@ -136,6 +142,12 @@
 <form class="clear" method="post" action="clearData">
   <%= submit_tag "Clear Data" %>
 <br>
-
 <br>
  
+<script type="text/javascript">
+  $(function () {
+  $("#ticker").autocomplete({
+    source: <%= ($stocks["stocks"]).to_json.html_safe %>
+   });
+  });
+</script>	
