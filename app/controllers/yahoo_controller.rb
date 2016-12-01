@@ -57,7 +57,7 @@ class YahooController < ApplicationController
       end
     end    
   
-    @daysToExpiry = (closestExpiry - Time.now.to_i)/86400
+    @daysToExpiry = (closestExpiry - Time.now.to_i)/86400 + 1
   
     $ticker = @ticker
     $stock_price = stockPrice
