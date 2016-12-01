@@ -8,6 +8,7 @@ $expiry = ''
 $option_data_array = Hash.new{|hsh,key| hsh[key] = [] }
 $days_to_expiry = 0
 $puts_or_calls = "put"
+$stocks = YAML.load_file('public/sp500.yml')
 
 class YahooController < ApplicationController
   skip_before_action :verify_authenticity_token
@@ -24,7 +25,7 @@ class YahooController < ApplicationController
   def fetchOptionData  
 
 #Misc links
-        #https://query1.finance.yahoo.com/v10/finance/quoteSummary/AAPL?formatted=true&crumb=B2JsfXH.lpf&lang=en-US&region=US&modules=incomeStatementHistory%2CcashflowStatementHistory%2CbalanceSheetHistory%2CincomeStatementHistoryQuarterly%2CcashflowStatementHistoryQuarterly%2CbalanceSheetHistoryQuarterly%2Cearnings&corsDomain=finance.yahoo.com%27
+    #https://query1.finance.yahoo.com/v10/finance/quoteSummary/AAPL?formatted=true&crumb=B2JsfXH.lpf&lang=en-US&region=US&modules=incomeStatementHistory%2CcashflowStatementHistory%2CbalanceSheetHistory%2CincomeStatementHistoryQuarterly%2CcashflowStatementHistoryQuarterly%2CbalanceSheetHistoryQuarterly%2Cearnings&corsDomain=finance.yahoo.com%27
     #https://query2.finance.yahoo.com/v10/finance/quoteSummary/AAPL?formatted=true&crumb=8ldhetOu7RJ&lang=en-US&region=US&modules=defaultKeyStatistics%2CfinancialData%2CcalendarEvents&corsDomain=finance.yahoo.com'
 
     initData()
