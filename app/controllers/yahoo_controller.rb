@@ -1,3 +1,5 @@
+require 'net/http'
+
 STRIKE_THRESHOLD = 0.25 # fraction of stock price: decides how many strikes to look at 
 RETURN_THRESHOLD = 4 #in annualized %
 RJUST_SPACING = 8
